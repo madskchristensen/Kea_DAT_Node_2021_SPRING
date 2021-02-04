@@ -43,7 +43,9 @@ console.log(average.toFixed(5));
 const letters = "abc";
 // Get me the character "c"
 
+const letterCLocation = letters.indexOf("c")
 
+console.log(letters.charAt(letterCLocation))
 
 // --------------------------------------
 // Exercise 7 - Replace
@@ -52,6 +54,12 @@ const fact = "You are learning javascript!";
 
 // capitalize the J in Javascript
 
+// Alternativ uden replace (som ikke virker hvis der er mere end 1 j)
+// const javascriptIndex = fact.indexOf("javascript")
+// const newFact = fact.slice(0, javascriptIndex) + fact.charAt(javascriptIndex).toUpperCase() + fact.slice(javascriptIndex + 1, fact.length)
+const fact2 = fact.replace("j", "J")
+
+console.log(fact2)
 
 // --------------------------------------
 

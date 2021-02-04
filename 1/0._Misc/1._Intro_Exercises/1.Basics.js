@@ -37,5 +37,4 @@ console.log(parseInt("123abc456"));
 
 console.log(+ year + number);
 
-
 // --------------------------------------
