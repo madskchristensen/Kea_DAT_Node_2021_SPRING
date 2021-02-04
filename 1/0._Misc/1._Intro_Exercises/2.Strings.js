@@ -7,6 +7,7 @@ const numberTwo = "2.30";
 // add those two numbers and show the result
 // you cannot touch line 1 neither line 2
 
+console.log(parseFloat(numberOne) + parseFloat(numberTwo));
 
 // --------------------------------------
 
@@ -17,6 +18,9 @@ const numberTwo = "2.30";
 const anotherNumberOne = "1.10";
 const anotherNumberTwo = "2.30";
 
+const solution = parseFloat(anotherNumberOne) + parseFloat(anotherNumberTwo);
+
+console.log(solution.toFixed(2));
 
 // --------------------------------------
 // Exercise 5 - Decimals and average
@@ -27,7 +31,9 @@ const three = 98;
 
 // Show in the console the avg. with 5 decimals
 
+const average = (one + two + three) / 3;
 
+console.log(average.toFixed(5));
 
 
 
@@ -36,7 +42,6 @@ const three = 98;
 
 const letters = "abc";
 // Get me the character "c"
-
 
 
 
