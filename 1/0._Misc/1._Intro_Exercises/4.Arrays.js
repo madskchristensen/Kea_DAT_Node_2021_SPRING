@@ -13,9 +13,23 @@ console.log(letters[1])
 
 const friends = [];
 
-// What a lonely array. Add at least 3 friend objects to it.  
+// What a lonely array. Add at least 3 friend objects to it.
+const bo = {
+    name: "Bo",
+    age: 30
+};
 
-friends.push("Bo", "John", "Bent")
+const john = {
+    name: "John",
+    age: 25
+}
+
+const bent = {
+    name: "Bent",
+    age: 28
+}
+
+friends.push(bo, john, bent)
 
 console.log(friends)
 
@@ -55,7 +69,7 @@ console.log(diet)
 
 // You really like your daily diet from last exercise. Copy it to a new array called dinnerTray so you can give it to a friend.
 
-const dinnerTray = diet
+const dinnerTray = diet.slice();
 
 console.log(dinnerTray)
 
@@ -67,8 +81,8 @@ const lettersExpanded = ["a","b","c", "d", "e", "f", "g", "h"];
 
 let count = 1
 
-for(letter of lettersExpanded) {
-    if(count % 2 === 0) {
+for (let letter of lettersExpanded) {
+    if (count % 2 === 0) {
         console.log(letter)
     }
 
@@ -87,8 +101,8 @@ const discardedNumbers = [];
 
 // --------------------------------------
 
-for(i = 0; i < numbers.length; i++) {
-    if(numbers[i] > 6 || numbers[i] < 0) {
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 6 || numbers[i] < 0) {
         console.log(numbers[i])
     } else {
         discardedNumbers.push(numbers[i])

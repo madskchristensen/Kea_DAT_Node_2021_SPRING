@@ -12,9 +12,9 @@ console.log(myObj.message)
 // Exercise 2 - Defining an object. 
 
 // Create an object that has your name and age.
-const myNewObject = {"name": "Mads", "age": "24"}
+const myNewObject = {"name": "Mads", "age": 24}
 
-for (variable in myNewObject) {
+for (let variable in myNewObject) {
     console.log(myNewObject[variable])
 }
 
