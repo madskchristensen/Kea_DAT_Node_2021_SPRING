@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    background-image: linear-gradient(-90deg, #d38312, #a83279);
+    margin-bottom: 2em;
+}
+
+.nav-link {
+    font-size: 16px;
+    margin: 3px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.navbar-brand {
+    height: auto;
+    max-width: 5%;
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+
+.nav-link:hover {
+    font-weight: 700;
+    color: #fff;
+}
+
+#main-content {
+    min-height: calc(100vh - 2em - 118px);
+}

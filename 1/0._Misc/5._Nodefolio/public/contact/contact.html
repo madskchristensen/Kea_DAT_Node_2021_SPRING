@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="contact.css">
+
+<script>
+    // toastr custom settings
+    (() => {
+        toastr.options.closeButton = true;
+        toastr.options.timeOut = 3000;
+        toastr.options.extendedTimeOut = 3000;
+        toastr.options.progressBar = true;
+
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.hideMethod = 'slideUp';
+        toastr.options.closeMethod = 'slideUp';
+    })()
+
+    // get form data
+    // send it with fetch
+    // idea: use toastr for showing the messages
+    async function sendFormData() {
+        const msgSuccess = "Email sent!"
+        const msgError = "Something went wrong. Email not sent."
+
+        // select the form element with dom api
+        const formElement = document.getElementById("contact-form")
+
+        // create FormData object and populate it with data from formElement
+        // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+        const formData = new FormData(formElement)
+
+        // create javascript object with key:value pairs representing form data
+        const form = {}
+        formData.forEach((value, key) => form[key] = value)
+
+        // use fetch to post the form object to api
+        await fetch("/api/contact", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify(form)
+
+        })
+            // according to https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+            // fetch will only reject promise if request is not completed or a network failure happens
+            // this means http error codes like 404 will still result in a resolved promise
+            // res.ok is set to true if http code is within 200-299 range.
+            // So a 404 (or other error) will result in ok = false
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`Network response was not ok: ${res.status} ${res.statusText}`)
+                }
+
+                toastr.success(msgSuccess)
+            })
+            .catch(err => {
+                toastr.error(msgError)
+                console.log(err)
+            })
+
+        resetForm()
+    }
+
+    function resetForm() {
+        document.getElementById("name").value = ""
+        document.getElementById("email").value = ""
+        document.getElementById("subject").value = ""
+        document.getElementById("message").value = ""
+    }
+</script>
+    <!-- Bruger action i stedet for onsubmit da onsubmit refresher siden,
+        hvilket gør at toastr notifikationen ikke bliver vist -->
+    <form onsubmit="sendFormData(); return false;" id="contact-form">
+        <div class="d-grid gap-1">
+
+            <div class="mb-3">
+                <h1>Shoot me a message!</h1>
+            </div>
+            <div class="form-floating mb-3 w-75">
+                <input class="form-control" type="text" name="name" id="name" placeholder="Name" required>
+                <label for="name" class="form-label">Name</label>
+            </div>
+            <div class="form-floating mb-3 w-75">
+                <input class="form-control" type="email" name="email" id="email" placeholder="Email" required>
+                <label for="email" class="form-label">Email: </label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="subject" id="subject" placeholder="Subject" required>
+                <label for="subject" class="form-label">Subject: </label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="message" id="message"
+                      placeholder="Write something please..." required></textarea>
+            <label for="message" class="form-label">Message: </label>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Send"/>
+    </form>
